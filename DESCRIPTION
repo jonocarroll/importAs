@@ -1,5 +1,5 @@
 Package: importAs
-Version: 0.1.0
+Version: 0.2.0
 Title: Idiomatic Python Shorthand Imports
 Description: Import namespaces as shorthand symbols rather 
   than full package names, in a python-esque fashion.

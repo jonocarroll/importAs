@@ -1,0 +1,9 @@
+importAs 0.2.0
+
+* infix %importAs% (#1, @sa-lee)
+* NSE throughout (#2)
+* check for collisions (#3)
+
+importAs 0.1.0
+
+* basic implementation

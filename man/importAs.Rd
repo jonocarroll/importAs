@@ -2,14 +2,17 @@
 % Please edit documentation in R/import.R
 \name{importAs}
 \alias{importAs}
+\alias{\%importAs\%}
 \title{Represent A Package With A Symbol}
 \usage{
 importAs(pkg = NULL, as = NULL)
+
+pkg \%importAs\% as
 }
 \arguments{
-\item{pkg}{(character) name of a (hopefully installed) package}
+\item{pkg}{(character or symbol) name of a (hopefully installed) package}
 
-\item{as}{(character) symbol into which the package name should be assigned}
+\item{as}{(character or symbol) symbol into which the package name should be assigned}
 }
 \value{
 the symbol represented by \code{as} is assigned the character string \code{pkg}
@@ -25,4 +28,5 @@ prefixing operation, such as \code{d::select()}
 }
 \examples{
 importAs("dplyr", "d")
+dplyr \%importAs\% d
 }

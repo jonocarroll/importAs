@@ -14,6 +14,12 @@ In order to mimic this as closely as possible, the function `importAs`
 takes a package name and a (short?) name for that and creates a linkage
 
 ``` r
+importAs(dplyr, d)
+```
+
+or
+
+``` r
 importAs("dplyr", "d")
 ```
 
@@ -27,6 +33,14 @@ s <- "stringr"
 
 The `importAs` function is merely a signal to a reader that this magic
 is going to be performed.
+
+As a further convenience, this [can be specified using an infix
+operator](https://github.com/jonocarroll/importAs/issues/1) (h/t
+@sa-lee)
+
+``` r
+dplyr %importAs% d
+```
 
 At this point nothing magical has happened. The magic comes from
 overwriting the `::` operator. To – at least, my – surprise, `::` can
@@ -77,6 +91,30 @@ dplyr::filter(mtcars, cyl == 4, am == 1)
 #> 8 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
 stringr::str_extract("a1b2c3", "[a-z]2")
 #> [1] "b2"
+```
+
+## Collisions
+
+If the symbol you are trying to use as a shorthand *already* exists as
+an available namespace, then that will take precedence. This prevents
+accidentally overwriting a namespace reference
+
+``` r
+importAs(stringr, dplyr)
+#> Warning: stringr is itself a valid namespace and takes precedence.
+dplyr::str_extract
+#> Error: 'str_extract' is not an exported object from 'namespace:dplyr'
+```
+
+and the existing namespace will still be found
+
+``` r
+dplyr::select
+#> function (.data, ...) 
+#> {
+#>     UseMethod("select")
+#> }
+#> <environment: namespace:dplyr>
 ```
 
 ## Installation

@@ -19,18 +19,18 @@
 #' "dplyr"::select
 `::` <- function (pkg, name) {
   charpkg <- as.character(substitute(pkg))
+  name <- as.character(substitute(name))
   ## if pkg refers to an installed package, that will be used
   installed <- tryCatch(isNamespace(asNamespace(charpkg)), error = function(e) e)
   pkgobj <- if (!inherits(installed, "error")) charpkg else pkg
-  name <- as.character(substitute(name))
   getExportedValue(pkgobj, name)
 }
 
 #' Represent A Package With A Symbol
 #'
 #' @md
-#' @param pkg (character) name of a (hopefully installed) package
-#' @param as (character) symbol into which the package name should be assigned
+#' @param pkg (character or symbol) name of a (hopefully installed) package
+#' @param as (character or symbol) symbol into which the package name should be assigned
 #'
 #' @return the symbol represented by `as` is assigned the character string `pkg`
 #'
@@ -48,10 +48,34 @@
 #' @examples
 #' importAs("dplyr", "d")
 importAs <- function(pkg = NULL, as = NULL) {
-  !is.null(pkg) || stop("\"pkg\" is required", call. = FALSE)
-  !is.null(as) || stop("\"as\" is required", call. = FALSE)
+  !is.null(substitute(pkg)) || stop("\"pkg\" is required", call. = FALSE)
+  !is.null(substitute(as)) || stop("\"as\" is required", call. = FALSE)
 
-  assign(as, pkg, envir = parent.frame())
+  .importAs(substitute(pkg), substitute(as))
+  return(invisible(NULL))
+
 }
 
+#' @rdname importAs
+#' @export
+#' @examples
+#' dplyr %importAs% d
+`%importAs%` <- function(pkg, as) {
+  .importAs(substitute(pkg), substitute(as))
+  return(invisible(NULL))
+}
 
+#' @keywords internal
+#' @noRd
+.importAs <- function(pkg, as) {
+  ## if name already refers to an installed package, that will have precedence
+  already_installed <- tryCatch(isNamespace(asNamespace(as)), error = function(e) e)
+  if (!inherits(already_installed, "error")) {
+    warning(pkg, " is itself a valid namespace and takes precedence.", call. = FALSE)
+    return(invisible(NULL))
+  }
+  assign(as.character(as),
+         as.character(pkg),
+         envir = .GlobalEnv)
+  return(invisible(NULL))
+}

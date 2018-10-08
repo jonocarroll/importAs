@@ -15,24 +15,34 @@ takes a package name and a (short?) name for that and creates a linkage
 
 ``` r
 importAs(dplyr, d)
+d
+#> Namespace 'dplyr' can be referenced as 'd'
+#> [1] "dplyr"
 ```
 
 or
 
 ``` r
 importAs("dplyr", "d")
+d
+#> Namespace 'dplyr' can be referenced as 'd'
+#> [1] "dplyr"
 ```
 
 This is merely a convenience, however. In reality a variable `d` is
-created with the value `"dplyr"`, so we could also do this manually for
-another package
+created with the value `"dplyr"` (and a class so we can dispatch on it).
+We could also do this manually for another package, creating a simple
+character object
 
 ``` r
 s <- "stringr"
+s
+#> [1] "stringr"
 ```
 
 The `importAs` function is merely a signal to a reader that this magic
-is going to be performed.
+is going to be performed. The class means it is clearer that the
+shorthand is being used.
 
 As a further convenience, this [can be specified using an infix
 operator](https://github.com/jonocarroll/importAs/issues/1) (h/t
@@ -40,6 +50,9 @@ operator](https://github.com/jonocarroll/importAs/issues/1) (h/t
 
 ``` r
 dplyr %importAs% d
+d
+#> Namespace 'dplyr' can be referenced as 'd'
+#> [1] "dplyr"
 ```
 
 At this point nothing magical has happened. The magic comes from

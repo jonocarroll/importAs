@@ -1,3 +1,9 @@
+importAs 0.2.1
+
+* a symbol used as a shorthand now stores
+  a class which identifies it as an importedNamespace
+  (and displays a message when printed) (#5)
+
 importAs 0.2.0
 
 * infix %importAs% (#1, @sa-lee)

@@ -1,3 +1,10 @@
+#' @export
+print.importedNamespace <- function(x, ...) {
+  message("Namespace '", c(x), "' can be referenced as '", attr(x, "symbol"), "'")
+  print(c(x))
+  return(invisible(NULL))
+}
+
 #' Overwrite :: Operator
 #'
 #' @usage pkg::name
@@ -75,7 +82,9 @@ importAs <- function(pkg = NULL, as = NULL) {
     return(invisible(NULL))
   }
   assign(as.character(as),
-         as.character(pkg),
+         structure(as.character(pkg),
+                   class = c("importedNamespace", "character"),
+                   symbol = as.character(as)),
          envir = .GlobalEnv)
   return(invisible(NULL))
 }

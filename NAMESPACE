@@ -2,7 +2,6 @@
 
 S3method(print,importedNamespace)
 export("%importAs%")
-export("%||%")
 export("::")
 export(.rs.describeObject)
 export(importAs)

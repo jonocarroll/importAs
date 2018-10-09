@@ -26,6 +26,14 @@ This is merely a convenience function which signals to a reader that shorthand
 but demonstrates that this is to be explicitly used in a shorthand namespace
 prefixing operation, such as \code{d::select()}
 }
+\section{Debugging}{
+
+
+To turn on debug mode, in which a message is printed whenever
+shorthand namespacing is in effect, set the option
+\code{options(importAs.debug = TRUE)}
+}
+
 \examples{
 importAs("dplyr", "d")
 dplyr \%importAs\% d

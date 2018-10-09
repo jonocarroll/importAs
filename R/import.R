@@ -7,12 +7,19 @@ print.importedNamespace <- function(x, ...) {
 
 #' Overwrite :: Operator
 #'
+#' @md
 #' @usage pkg::name
 #'
 #' @param pkg	package name: symbol or literal character string.
 #' @param name variable name: symbol or literal character string.
 #'
-#' Works with symbols which point to strings represeting packages
+#' Works with symbols which point to strings representing packages
+#'
+#' @section Debugging:
+#'
+#' To turn on debug mode, in which a message is printed whenever
+#' shorthand namespacing is in effect, set the option
+#' `options(importAs.debug = TRUE)`
 #'
 #' @export
 #'
@@ -30,6 +37,9 @@ print.importedNamespace <- function(x, ...) {
   ## if pkg refers to an installed package, that will be used
   installed <- tryCatch(isNamespace(asNamespace(charpkg)), error = function(e) e)
   pkgobj <- if (!inherits(installed, "error")) charpkg else pkg
+  if (!identical(pkgobj, charpkg) && (getOption("importAs.debug") %||% FALSE)) {
+    message("DEBUG: ", substitute(name), " retrieved from namespace: ", pkgobj)
+  }
   getExportedValue(pkgobj, name)
 }
 
@@ -41,8 +51,6 @@ print.importedNamespace <- function(x, ...) {
 #'
 #' @return the symbol represented by `as` is assigned the character string `pkg`
 #'
-#' @export
-#'
 #' @description
 #' This is merely a convenience function which signals to a reader that shorthand
 #' (python-esque) namespacing is occurring. This is equivalent to
@@ -51,6 +59,14 @@ print.importedNamespace <- function(x, ...) {
 #'
 #' but demonstrates that this is to be explicitly used in a shorthand namespace
 #' prefixing operation, such as `d::select()`
+#'
+#' @section Debugging:
+#'
+#' To turn on debug mode, in which a message is printed whenever
+#' shorthand namespacing is in effect, set the option
+#' `options(importAs.debug = TRUE)`
+#'
+#' @export
 #'
 #' @examples
 #' importAs("dplyr", "d")

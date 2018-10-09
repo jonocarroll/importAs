@@ -105,6 +105,33 @@ and the existing namespace will still be found
 dplyr::select
 ```
 
+## Debugging
+
+If you want to be clear about where your shorthands point to, you can set the 
+debug option
+
+```{r}
+options(importAs.debug = TRUE)
+```
+
+which will turn on messaging whenever a shorthand is accessed. For example, using 
+`dplyr` normally does not
+
+```{r}
+dplyr::filter(mtcars, cyl == 4 & am == 1)
+```
+
+but using the shorthand, we are reminded as to where that refers
+
+```{r}
+d::filter(mtcars, cyl == 4 & am == 1)
+```
+
+```{r, include = FALSE}
+options(importAs.debug = FALSE)
+```
+
+
 ## Installation
 
 You can install the development version of `importAs` with

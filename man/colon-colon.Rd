@@ -11,11 +11,19 @@ pkg::name
 
 \item{name}{variable name: symbol or literal character string.
 
-Works with symbols which point to strings represeting packages}
+Works with symbols which point to strings representing packages}
 }
 \description{
 Overwrite :: Operator
 }
+\section{Debugging}{
+
+
+To turn on debug mode, in which a message is printed whenever
+shorthand namespacing is in effect, set the option
+\code{options(importAs.debug = TRUE)}
+}
+
 \examples{
 ## shorthand namespacing
 d <- "dplyr"

@@ -44,6 +44,11 @@ The `importAs` function is merely a signal to a reader that this magic
 is going to be performed. The class means it is clearer that the
 shorthand is being used.
 
+A custom description is provided within the RStudio Environment pane
+which identifies each shorthand and the namespace to which it refers.
+
+![](./tools/environment.png)
+
 As a further convenience, this [can be specified using an infix
 operator](https://github.com/jonocarroll/importAs/issues/1) (h/t
 @sa-lee)

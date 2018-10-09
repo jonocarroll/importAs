@@ -25,112 +25,27 @@ import dplyr as d
 ```
 
 In order to mimic this as closely as possible, the function `importAs` takes a 
-package name and a (short?) name for that and creates a linkage
+package name and a (short?) name for that and creates a linkage. Helpful information
+is provided when printing and within the RStudio Environment pane
 
 ```{r}
 importAs(dplyr, d)
+
+## or ##
+
+dplyr %importAs% d
+
 d
 ```
-
-or
-
-```{r}
-importAs("dplyr", "d")
-d
-```
-
-This is merely a convenience, however. In reality a variable `d` is created 
-with the value `"dplyr"` (and a class so we can dispatch on it). We could also 
-do this manually for another package, creating a simple character object
-
-```{r}
-s <- "stringr"
-s
-```
-
-The `importAs` function is merely a signal to a reader that this magic is going to 
-be performed. The class means it is clearer that the shorthand is being used.
-
-A custom description is provided within the RStudio Environment pane which 
-identifies each shorthand and the namespace to which it refers.
 
 ![](./tools/environment.png)
 
-As a further convenience, this [can be specified using an infix operator](https://github.com/jonocarroll/importAs/issues/1) (h/t @sa-lee)
-
-```{r}
-dplyr %importAs% d
-d
-```
-
-At this point nothing magical has happened. The magic comes from overwriting the `::`
-operator. To -- at least, my -- surprise, `::` can happily take a character argument 
-for the left-hand side, so 
-
-```{r}
-## equivalent to "dplyr"::filter
-base::`::`("dplyr", filter)
-```
-
-works. The magic part is rewriting this function to look deeper if provided with a 
-symbol which already resolves to a character string representing an installed 
-package. The result is that we can shorthand the namespace referencing
 
 ```{r}
 d::filter(mtcars, cyl == 4, am == 1)
-s::str_extract("a1b2c3", "[a-z]2")
 ```
 
-without interfering with any existing functionality
-
-```{r}
-dplyr::filter(mtcars, cyl == 4, am == 1)
-stringr::str_extract("a1b2c3", "[a-z]2")
-```
-
-## Collisions
-
-If the symbol you are trying to use as a shorthand _already_ exists as an available 
-namespace, then that will take precedence. This prevents accidentally overwriting 
-a namespace reference
-
-```{r, error = TRUE, warning = TRUE}
-importAs(stringr, dplyr)
-dplyr::str_extract
-```
-
-and the existing namespace will still be found
-
-```{r}
-dplyr::select
-```
-
-## Debugging
-
-If you want to be clear about where your shorthands point to, you can set the 
-debug option
-
-```{r}
-options(importAs.debug = TRUE)
-```
-
-which will turn on messaging whenever a shorthand is accessed. For example, using 
-`dplyr` normally does not
-
-```{r}
-dplyr::filter(mtcars, cyl == 4 & am == 1)
-```
-
-but using the shorthand, we are reminded as to where that refers
-
-```{r}
-d::filter(mtcars, cyl == 4 & am == 1)
-```
-
-```{r, include = FALSE}
-options(importAs.debug = FALSE)
-```
-
+For full details, see the vignette ['namespace-shorthands'](./docs/articles/namespace-shorthands.html).
 
 ## Installation
 

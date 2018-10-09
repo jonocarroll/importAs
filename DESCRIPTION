@@ -1,5 +1,5 @@
 Package: importAs
-Version: 0.2.3
+Version: 0.2.4
 Title: Idiomatic Python Shorthand Imports
 Description: Import namespaces as shorthand symbols rather 
   than full package names, in a python-esque fashion.
@@ -15,3 +15,7 @@ ByteCompile: true
 RoxygenNote: 6.0.1
 URL: https://github.com/jonocarroll/importAs
 BugReports: https://github.com/jonocarroll/importAs/issues
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

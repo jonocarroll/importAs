@@ -10,7 +10,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Idiomatic Python Shorthand Imports">
-<meta property="og:description" content="Import namespaces as shorthand symbols rather 
+<meta property="og:description" content="Import namespaces as s5orthand symbols rather 
   than full package names, in a python-esque fashion.">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">importAs</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.5</span>
       </span>
     </div>
 
@@ -84,18 +84,21 @@
 <div id="importas" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#importas" class="anchor"></a>importAs</h1></div>
+<p><a href="https://codecov.io/github/jonocarroll/importAs?branch=master"><img src="https://codecov.io/gh/jonocarroll/importAs/branch/master/graph/badge.svg" alt="Coverage status"></a> “<a href="http://tinyurl.com/ybwc9qt4"><img src="https://img.shields.io/badge/covrpage-Last_Build_2018_10_10-brightgreen.svg" alt="Covrpage Summary"></a>”</p>
 <p>This package helps mimic the idiomatic python importing of packages such as</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="im">import</span> dplyr <span class="im">as</span> d</a></code></pre></div>
 <p>In order to mimic this as closely as possible, the function <code>importAs</code> takes a package name and a (short?) name for that and creates a linkage. Helpful information is provided when printing and within the RStudio Environment pane</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="reference/importAs.html">importAs</a></span>(dplyr, d)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">## or ##</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">dplyr <span class="op">%importAs%</span><span class="st"> </span>d</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">d</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; Namespace 'dplyr' can be referenced as 'd'</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; [1] "dplyr"</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; Namespace 'dplyr' can be referenced as 'd'</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">## or ##</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">dplyr <span class="op">%importAs%</span><span class="st"> </span>d</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; Namespace 'dplyr' can be referenced as 'd'</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">d</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; Namespace 'dplyr' can be referenced as 'd'</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; [1] "dplyr"</span></a></code></pre></div>
 <p><img src="tools/environment.png"></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">d<span class="op">::</span><span class="kw">filter</span>(mtcars, cyl <span class="op">==</span><span class="st"> </span><span class="dv">4</span>, am <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt;    mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span></a>

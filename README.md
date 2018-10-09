@@ -3,6 +3,11 @@
 
 # importAs
 
+[![Coverage
+status](https://codecov.io/gh/jonocarroll/importAs/branch/master/graph/badge.svg)](https://codecov.io/github/jonocarroll/importAs?branch=master)
+“[![Covrpage
+Summary](https://img.shields.io/badge/covrpage-Last_Build_2018_10_10-brightgreen.svg)](http://tinyurl.com/ybwc9qt4)”
+
 This package helps mimic the idiomatic python importing of packages such
 as
 
@@ -17,10 +22,12 @@ Environment pane
 
 ``` r
 importAs(dplyr, d)
+#> Namespace 'dplyr' can be referenced as 'd'
 
 ## or ##
 
 dplyr %importAs% d
+#> Namespace 'dplyr' can be referenced as 'd'
 
 d
 #> Namespace 'dplyr' can be referenced as 'd'

@@ -1,7 +1,7 @@
 Package: importAs
-Version: 0.2.4
+Version: 0.2.5
 Title: Idiomatic Python Shorthand Imports
-Description: Import namespaces as shorthand symbols rather 
+Description: Import namespaces as s5orthand symbols rather 
   than full package names, in a python-esque fashion.
 Authors@R: person("Jonathan", "Carroll", 
  email = "rpkg@jcarroll.com.au", 
@@ -17,5 +17,7 @@ URL: https://github.com/jonocarroll/importAs
 BugReports: https://github.com/jonocarroll/importAs/issues
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat,
+    covr
 VignetteBuilder: knitr

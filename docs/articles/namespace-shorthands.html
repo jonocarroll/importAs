@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">importAs</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.5</span>
       </span>
     </div>
 
@@ -79,7 +79,7 @@
       <h1>Namespace Shortcuts</h1>
                         <h4 class="author">Jonathan Carroll</h4>
             
-            <h4 class="date">2018-10-09</h4>
+            <h4 class="date">2018-10-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jonocarroll/importAs/blob/master/vignettes/namespace-shorthands.Rmd"><code>vignettes/namespace-shorthands.Rmd</code></a></small>
       <div class="hidden name"><code>namespace-shorthands.Rmd</code></div>
@@ -101,14 +101,16 @@
 <a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt;     ::</span></a>
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw"><a href="../reference/importAs.html">importAs</a></span>(dplyr, d)</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">d</a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; Namespace 'dplyr' can be referenced as 'd'</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; [1] "dplyr"</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; Namespace 'dplyr' can be referenced as 'd'</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">d</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; Namespace 'dplyr' can be referenced as 'd'</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; [1] "dplyr"</span></a></code></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="../reference/importAs.html">importAs</a></span>(<span class="st">"dplyr"</span>, <span class="st">"d"</span>)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">d</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; Namespace 'dplyr' can be referenced as 'd'</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; [1] "dplyr"</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; Namespace 'dplyr' can be referenced as 'd'</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">d</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; Namespace 'dplyr' can be referenced as 'd'</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; [1] "dplyr"</span></a></code></pre></div>
 <p>This is merely a convenience, however. In reality a variable <code>d</code> is created with the value <code>"dplyr"</code> (and a class so we can dispatch on it). We could also do this manually for another package, creating a simple character object</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">s &lt;-<span class="st"> "stringr"</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">s</a>
@@ -118,9 +120,10 @@
 <p><img src="../tools/environment.png"></p>
 <p>As a further convenience, this <a href="https://github.com/jonocarroll/importAs/issues/1">can be specified using an infix operator</a> (h/t <span class="citation">@sa-lee</span>)</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">dplyr <span class="op">%importAs%</span><span class="st"> </span>d</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">d</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; Namespace 'dplyr' can be referenced as 'd'</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; [1] "dplyr"</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; Namespace 'dplyr' can be referenced as 'd'</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">d</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; Namespace 'dplyr' can be referenced as 'd'</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; [1] "dplyr"</span></a></code></pre></div>
 <p>At this point nothing magical has happened. The magic comes from overwriting the <code>::</code> operator. To – at least, my – surprise, <code>::</code> can happily take a character argument for the left-hand side, so</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">## equivalent to "dplyr"::filter</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2">base<span class="op">::</span><span class="st">`</span><span class="dt">::</span><span class="st">`</span>(<span class="st">"dplyr"</span>, filter)</a>

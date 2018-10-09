@@ -97,6 +97,7 @@ importAs <- function(pkg = NULL, as = NULL) {
     warning(pkg, " is itself a valid namespace and takes precedence.", call. = FALSE)
     return(invisible(NULL))
   }
+  message("Namespace '", as.character(pkg), "' can be referenced as '", as.character(as), "'")
   assign(as.character(as),
          structure(as.character(pkg),
                    class = c("importedNamespace", "character"),

@@ -4,6 +4,7 @@
 #' default value. It's inspired by the way that Ruby's or operation (`||`)
 #' works.
 #'
+#' @noRd
 #' @param x,y If `x` is NULL, will return `y`; otherwise returns
 #'   `x`.
 #' @name null-default

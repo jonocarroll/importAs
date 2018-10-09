@@ -24,7 +24,7 @@ library(importAs)
 
 This package helps mimic the idiomatic python importing of packages such as
 
-```{python, eval = FALSE}
+```{}
 import dplyr as d
 ```
 

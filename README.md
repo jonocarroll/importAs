@@ -13,9 +13,7 @@ Summary](https://img.shields.io/badge/covrpage-Last_Build_2018_10_10-brightgreen
 This package helps mimic the idiomatic python importing of packages such
 as
 
-``` python
-import dplyr as d
-```
+    import dplyr as d
 
 In order to mimic this as closely as possible, the function `importAs`
 takes a package name and a (short?) name for that and creates a linkage.

@@ -18,8 +18,9 @@ library(importAs)
 
 # importAs
 
- [![Coverage status](https://codecov.io/gh/jonocarroll/importAs/branch/master/graph/badge.svg)](https://codecov.io/github/jonocarroll/importAs?branch=master)
-"[![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2018_10_10-brightgreen.svg)](http://tinyurl.com/ybwc9qt4)"
+[![Travis build status](https://travis-ci.org/jonocarroll/importAs.svg?branch=master)](https://travis-ci.org/jonocarroll/importAs)
+[![Coverage status](https://codecov.io/gh/jonocarroll/importAs/branch/master/graph/badge.svg)](https://codecov.io/github/jonocarroll/importAs?branch=master)
+[![Covrpage Summary](https://img.shields.io/badge/covrpage-Last_Build_2018_10_10-brightgreen.svg)](http://tinyurl.com/ybwc9qt4)
 
 This package helps mimic the idiomatic python importing of packages such as
 

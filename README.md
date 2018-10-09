@@ -43,7 +43,7 @@ d::filter(mtcars, cyl == 4, am == 1)
 ```
 
 For full details, see the vignette
-[‘namespace-shorthands’](./docs/articles/namespace-shorthands.html).
+[‘namespace-shorthands’](https://jonocarroll.github.io/importAs/articles/namespace-shorthands.html).
 
 ## Installation
 

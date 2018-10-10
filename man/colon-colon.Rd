@@ -26,10 +26,10 @@ shorthand namespacing is in effect, set the option
 
 \examples{
 ## shorthand namespacing
-d <- "dplyr"
-d::select
+# d <- "dplyr"
+# d::select
 
 ## regular namespacing still works
-dplyr::select
-"dplyr"::select
+# dplyr::select
+#"dplyr"::select
 }

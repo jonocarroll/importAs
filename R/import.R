@@ -25,12 +25,12 @@ print.importedNamespace <- function(x, ...) {
 #'
 #' @examples
 #' ## shorthand namespacing
-#' d <- "dplyr"
-#' d::select
+#' # d <- "dplyr"
+#' # d::select
 #'
 #' ## regular namespacing still works
-#' dplyr::select
-#' "dplyr"::select
+#' # dplyr::select
+#' #"dplyr"::select
 `::` <- function (pkg, name) {
   charpkg <- as.character(substitute(pkg))
   name <- as.character(substitute(name))
